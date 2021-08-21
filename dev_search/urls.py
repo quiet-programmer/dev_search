@@ -10,5 +10,6 @@ urlpatterns = [
     path('', include('users.urls')),
 ]
 
+# below imports get all the static and media files for live update
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

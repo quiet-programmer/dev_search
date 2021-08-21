@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import os # import os to get template path
+
+# import os to get template path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'projects.apps.ProjectsConfig', # register or install the project folder
+    # register or install the project folder
+    'projects.apps.ProjectsConfig',
     'users.apps.UsersConfig',
 ]
 
@@ -63,7 +66,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates'), # this is to add template folder
+            # this is to add template folder
+            os.path.join(BASE_DIR, 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -133,6 +137,8 @@ MEDIA_URL = '/images/'
 # this adds all static files to the project
 STATICFILES_DIRS = [
     # os.path.join(BASE_DIR, 'static')
+
+    # new way to get path directory
     BASE_DIR / 'static',
 ]
 
