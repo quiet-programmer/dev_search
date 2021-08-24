@@ -1,20 +1,41 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import Project
-from .forms import ProjectForm
+from .forms import ProjectForm, ReviewForm
+from .utils import searchProjects, paginateProject
 
 # Create your views here.
 def projects(request):
-    all_projects = Project.objects.all()
+    all_projects, search_query = searchProjects(request)
+    custom_range, all_projects = paginateProject(request, all_projects, 3)
+
     context = {
         'projects': all_projects,
+        'search_query': search_query,
+        'custom_range': custom_range,
     }
     return render(request, 'projects/projects.html', context)
 
 def project(request, pk):
     projectObt = Project.objects.get(id=pk)
-    return render(request, 'projects/single_project.html', {'project': projectObt})
+    form = ReviewForm()
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        review = form.save(commit=False)
+        review.project = projectObt
+        review.owner = request.user.profile
+        review.save()
+
+        projectObt.getVoteCount
+
+        messages.success(request, 'Your review has been submitted')
+
+        return redirect('project', pk=projectObt.id)
+
+
+    return render(request, 'projects/single_project.html', {'project': projectObt, 'form': form})
 
 @login_required(login_url='login')
 def createProject(request):
