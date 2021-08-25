@@ -134,7 +134,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.mail.yahoo.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'bobbyjoseph108@yahoo.com'
-EMAIL_HOST_PASSWORD = 'hayzabzocvcdsluw'
+EMAIL_HOST_PASSWORD = ''
 
 
 
