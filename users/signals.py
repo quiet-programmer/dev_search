@@ -19,16 +19,16 @@ def create_profile(sender, instance, created, **kwargs):
             name=user.first_name,
         )
 
-        subject = 'Welcome to Dev Search'
-        message = f'Hi {profile.name}, We are glad you are here.'
-
-        send_mail(
-            subject,
-            message,
-            settings.EMAIL_HOST_USER,
-            [profile.email],
-            fail_silently=False,
-        )
+        # subject = 'Welcome to Dev Search'
+        # message = f'Hi {profile.name}, We are glad you are here.'
+        #
+        # send_mail(
+        #     subject,
+        #     message,
+        #     settings.EMAIL_HOST_USER,
+        #     [profile.email],
+        #     fail_silently=False,
+        # )
 
 
 def update_user(sender, instance, created, **kwargs):
