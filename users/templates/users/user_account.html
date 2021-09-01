@@ -89,7 +89,7 @@
             {% for project in profile.project_set.all %}
             <tr>
               <td class="settings__thumbnail">
-                <a href="{% url 'project' project.id %}"><img src="{{ project.featured_image.url }}" alt="Project Thumbnail" /></a>
+                <a href="{% url 'project' project.id %}"><img src="{{ project.imageURL }}" alt="Project Thumbnail" /></a>
               </td>
               <td class="settings__tableInfo">
                 <a href="{% url 'project' project.id %}">{{ project.title }}</a>
