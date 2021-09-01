@@ -18,6 +18,8 @@ import django_heroku
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from django.conf.global_settings import DATABASES
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -96,16 +98,20 @@ WSGI_APPLICATION = 'dev_search.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dev_search',
-        'USER': 'root',
-        'PASSWORD': 'bubbleplay',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'dev_search',
+#         'USER': 'root',
+#         'PASSWORD': 'bubbleplay',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#     }
+# }
+
+DATABASES['default'] = dj_database_url.config(
+    default='mysql://root:<password>@localhost:3306/<database>',
+)
 
 
 # Password validation
